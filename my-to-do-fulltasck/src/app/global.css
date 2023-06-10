@@ -1,0 +1,49 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@tailwind variants;
+
+@import url('https://fonts.googleapis.com/css2?family=Cantarell:wght@400;700&display=swap');
+
+:root {
+  --orange-base: #FAA974;
+  --dark-Blue: #003F7D;
+  --cyan: #00CBD2;
+  --pink-base: #E56F8C;
+}
+
+.bg-orange-base {
+  background-color: var(--orange-base);
+}
+
+.bg-dark-Blue {
+  background-color: var(--dark-Blue);
+}
+
+.bg-cyan {
+  background-color: var(--cyan);
+}
+
+.bg-pink-base {
+  background-color: var(--pink-base);
+}
+
+.text-orange-base {
+  color: var(--orange-base);
+}
+
+.text-dark-Blue {
+  color: var(--dark-Blue);
+}
+
+.text-cyan {
+  color: var(--cyan);
+}
+
+.text-pink-base {
+  color: var(--pink-base);
+}
+
+body {
+  font-family: 'Cantarell', sans-serif;
+}

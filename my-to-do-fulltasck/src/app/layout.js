@@ -1,5 +1,6 @@
-import './globals.css'
+import './global.css'
 import Login from './page.js'
+import Homepage from './homepage.js'
 
 export const metadata = {
   title: 'Create Next App',
@@ -10,7 +11,10 @@ export default function RootLayout() {
   return (
     <html lang="en">
       <body>
-        <Login />
+
+        <div>
+          <Homepage />
+        </div>
       </body>
     </html>
   )
