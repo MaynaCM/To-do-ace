@@ -1,24 +1,53 @@
 import { faX } from "@fortawesome/free-solid-svg-icons"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useState } from "react";
+import dotenv from 'dotenv';
 
-function Modal({mode, setShowModal, task}){
+dotenv.config();
+console.log(process.env.REACT_APP_URL);
 
+function Modal({mode, setShowModal, getData,  task}){
     const EditeMode = mode === 'Edite' ? true :false
+
     const [data, setData] = useState({
-        user_email: EditeMode ? task.user_email : null,
+        user_email: EditeMode ? task.user_email : 'may@test.com',
         title: EditeMode ? task.title : null,
         tasktext: EditeMode ? task.tasktext : null,
         progress: EditeMode ? task.progress : null,
-        date: EditeMode ? "" : new Date()
+        date: EditeMode ? task.date: new Date()
     })
-
-
-    const postData = () => {
+        const postData = async (e) => {
+        e.preventDefault() 
         try{
-            fetch()
+            const response = await fetch(`${process.env.REACT_APP_URL}/todos`, {
+            method: "POST",
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify(data)
+            })
+            if (response.status === 200){
+                console.log('WORKED')
+                setShowModal(false)
+                getData()
+            }
         } catch(err){
             console.error(err)
+        }
+    }
+
+    const editData = async(e) => {
+        e.preventDefault()
+        try {
+            await fetch(`${process.env.REACT_APP_SERVERURL}/todos/${task.id}`, {
+                method: "PUT",
+                headers:{'Content-Type': 'application/json'},
+                body: JSON.stringify(data)
+            })
+            if(response.status === 200){
+                setShowModal(false)
+                getData()
+            }
+        }catch (err) {
+        console.error(err)
         }
     }
 
@@ -31,7 +60,7 @@ function Modal({mode, setShowModal, task}){
         console.log(data) 
     }
 
-    const btnClass = `${mode} buttonSecondary text-white p-3 w-6/12 mt-auto`;
+    const btnClass = `${mode} buttonSecondary text-white p-3 w-6/12 mt-auto  cursor-pointer`;
 
     return(
         <div className="modalOverlay">
@@ -69,6 +98,7 @@ function Modal({mode, setShowModal, task}){
                         <label for="progress" className="text-dark-Blue text-sm">Qual o seu progresso?</label>
                         <input 
                         required
+                        id="progress"
                         type="range"
                         min='0'
                         max='100'
@@ -80,8 +110,8 @@ function Modal({mode, setShowModal, task}){
                         <div className="items-end flex h-full w-full justify-center">
                             <input 
                                 className={btnClass}
-                                value="Salvar"
                                 type="submit"
+                                onClick={EditeMode ? editData : postData}
                             />
                         </div>
                     </form>

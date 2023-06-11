@@ -2,7 +2,12 @@
 import './global.css'
 import NavbarLayout from './navBar';
 import { BrowserRouter, Link, Route, Routes } from 'react-router-dom';
+import { useState, useEffect } from "react";
+import TaskCard from './ticket';
 import Homepage from './homepage.js'
+import 'dotenv/config';
+
+
 
 export const metadata = {
   title: 'Create Next App',
@@ -11,11 +16,33 @@ export const metadata = {
 
 export default function RootLayout() {
 
+  const userEmail = 'may@test.com'
+  const [task, setTask] = useState(null)
+
+  const getData = async () => {
+    try{
+      const response = await fetch(`${process.env.REACT_APP_SERVERURL}/todos/${userEmail}`)
+      const json = await response.json()
+      console.log(json)
+      setTask(json)
+    } catch(err){
+      console.error(err)
+    }
+  }
+
+  useEffect(() => getData(), [])
+
+  console.log(task)
+
+  //Sort By date
+
+  const sortedTasks = task?.sort((a, b) => new Date(a.date) - new Date(b.date))
 
 
   return (
     <html lang="en">
       <body>
+      <main className="bg-cyan h-screen w-screen flex content-end items-end overflow-x-hidden">
       <BrowserRouter>
         <NavbarLayout />
         <Routes>
@@ -23,9 +50,13 @@ export default function RootLayout() {
           <Route path="/sobre" component={RootLayout} />
         </Routes>
       </BrowserRouter>
-        <div> 
-          <Homepage />
+      <div className="bg-white h-[70%] w-screen rounded-tl-[90px] ">
+          <Homepage  getData={getData}/>
+          <div className='overflow-y-auto bg-white w-full p-4'>
+          {sortedTasks?.map((task) => <TaskCard key={task.id} task={task} getData={getData}/>)}
         </div>
+        </div>
+      </main>
       </body>
     </html>
   )

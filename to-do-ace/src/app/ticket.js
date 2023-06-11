@@ -3,10 +3,26 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useState } from 'react';
 import ProgressBar from './progressBar';
 import Modal from './addTaskModal';
+import dotenv from 'dotenv';
 
-function TaskCard({ task }) {
+dotenv.config();
+
+function TaskCard({ task, getData }) {
   const [showModal, setShowModal] = useState(false)
   const [showTaskText, setShowTaskText] = useState(false);
+
+  const deleteItem = async () => {
+    try {
+      const response = await fetch(`${process.env.REACT_APP_SERVERURL}/todos/${task.id}`,{
+        method: 'DELETE'
+      })
+      if (response.status == 200) {
+        getData()
+      }
+    } catch (err) {
+      console.error(err)
+    }
+  }
 
   const toggleTaskText = () => {
     setShowTaskText(!showTaskText);
@@ -15,7 +31,7 @@ function TaskCard({ task }) {
   const chevronIcon = showTaskText ? faChevronUp : faChevronDown;
 
   return (
-    <div className="lg:ml-[5%] ml-[2%] p-5 ticketCard flex flex-col">
+    <div className="lg:ml-[5%] ml-[2%] p-5 ticketCard flex flex-col mb-6">
       <div className="flex flex-row justify-between">
         <div className="w-6/12 flex flex-row self-center">
           <button onClick={toggleTaskText}>
@@ -26,7 +42,7 @@ function TaskCard({ task }) {
         </div>
         <div className="self-center justify-end w-6/12 flex gap-4">
           <button className="buttonPrimary p-3 text-white w-1/12" onClick={() => setShowModal(true)}>Editar</button>
-          <button className="buttonSecondary p-3 text-white w-1/12">Excluir</button>
+          <button className="buttonSecondary p-3 text-white w-1/12" onClick={deleteItem}>Excluir</button>
         </div>
       </div>
       {showTaskText && (
@@ -35,7 +51,7 @@ function TaskCard({ task }) {
           <text>{task.tasktext}</text>
         </div>
       )}
-      {showModal && <Modal mode={'Edite'} setShowModal={setShowModal} task={task}/>}
+      {showModal && <Modal mode={'Edite'} setShowModal={setShowModal} getData={getData} task={task}/>}
     </div>
   );
 }

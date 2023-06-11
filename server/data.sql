@@ -14,5 +14,5 @@ CREATE TABLE users (
     hashed_password VARCHAR(255)
 )
 
-INSERT INTO todos(id, user_email, title, tasktext, progress)
+INSERT INTO todos(id, user_email, title, tasktext, progress, date)
 VALUES(0, 'may@test.com', 'first', 'testeteste', 10)

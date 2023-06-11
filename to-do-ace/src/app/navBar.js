@@ -1,5 +1,5 @@
 import { BrowserRouter, Link, Route } from 'react-router-dom';
-import RootLayout from './layout';
+
 
 function NavbarLayout() {
     return (
