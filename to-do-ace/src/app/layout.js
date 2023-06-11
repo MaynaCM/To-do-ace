@@ -1,5 +1,6 @@
+'use client';
 import './global.css'
-import Login from './page.js'
+
 import Homepage from './homepage.js'
 
 export const metadata = {
@@ -8,6 +9,9 @@ export const metadata = {
 }
 
 export default function RootLayout() {
+
+
+
   return (
     <html lang="en">
       <body>
@@ -19,3 +23,4 @@ export default function RootLayout() {
     </html>
   )
 }
+
