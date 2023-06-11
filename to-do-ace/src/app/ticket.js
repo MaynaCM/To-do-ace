@@ -2,8 +2,10 @@ import { faChevronDown, faChevronUp } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useState } from 'react';
 import ProgressBar from './progressBar';
+import Modal from './addTaskModal';
 
 function TaskCard({ task }) {
+  const [showModal, setShowModal] = useState(false)
   const [showTaskText, setShowTaskText] = useState(false);
 
   const toggleTaskText = () => {
@@ -23,7 +25,7 @@ function TaskCard({ task }) {
           <ProgressBar />
         </div>
         <div className="self-center justify-end w-6/12 flex gap-4">
-          <button className="buttonPrimary p-3 text-white w-1/12">Editar</button>
+          <button className="buttonPrimary p-3 text-white w-1/12" onClick={() => setShowModal(true)}>Editar</button>
           <button className="buttonSecondary p-3 text-white w-1/12">Excluir</button>
         </div>
       </div>
@@ -33,6 +35,7 @@ function TaskCard({ task }) {
           <text>{task.tasktext}</text>
         </div>
       )}
+      {showModal && <Modal mode={'Edite'} setShowModal={setShowModal} task={task}/>}
     </div>
   );
 }

@@ -3,6 +3,7 @@ import './global.css';
 import { faCirclePlus } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import TaskCard from './ticket';
+import Modal from './addTaskModal';
 
 function Homepage() {
   const userEmail = 'may@test.com'
@@ -27,6 +28,10 @@ function Homepage() {
 
   const sortedTasks = task?.sort((a, b) => new Date(a.date) - new Date(b.date))
 
+  // open the modal
+
+  const [showModal, setShowModal] = useState(false)
+
   return (
     <main className="bg-cyan h-screen w-screen flex content-end items-end overflow-hidden">
       <div className="bg-white h-4/6 w-screen rounded-tl-[90px] p-6">
@@ -34,7 +39,7 @@ function Homepage() {
           <p className="text-dark-Blue text-2xl">Bem vindo User!</p>
           <p className="text-pink-base text-xl mt-2">O que temos para hoje?</p>
         </div>
-        <button className="lg:ml-[5%] ml-[2%] text-pink-base flex items-center mt-8 w-[15%]">
+        <button className="lg:ml-[5%] ml-[2%] text-pink-base flex items-center mt-8 w-[15%]" id="addTask" onClick={() =>setShowModal(true)}>
           <FontAwesomeIcon icon={faCirclePlus} className="text-pink-base mr-3 "  size="2x" />
           Adicionar tarefa
         </button>
@@ -42,6 +47,7 @@ function Homepage() {
           {sortedTasks?.map((task) => <TaskCard key={task.id} task={task}/>)}
         </div>
       </div>
+      {showModal && <Modal mode={'Crie'} setShowModal={setShowModal}/>}
     </main>
   );
 }
