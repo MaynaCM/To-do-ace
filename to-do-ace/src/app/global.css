@@ -53,3 +53,43 @@ body {
 .divBorderBottom{
   border-bottom: 1px solid var(--dark-Blue);
 }
+
+/* navBar classes */
+
+.navBar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: transparent;
+    padding: 10px;
+    display: flex;
+}
+
+/* ticket Card classes */
+
+.ticketCard{
+  border: #E6E6E6 solid 1px;
+  border-radius: 10px;
+  box-shadow: 0px 36px 14px rgba(117, 117, 117, 0.01), 
+  0px 20px 12px rgba(117, 117, 117, 0.05), 
+  0px 9px 9px rgba(117, 117, 117, 0.09), 
+  0px 2px 5px rgba(117, 117, 117, 0.1), 
+  0px 0px 0px rgba(117, 117, 117, 0.1);
+}
+
+.cardExpanded{
+  border-top: 1px solid var(--dark-Blue);
+}
+
+/*button classes */
+
+.buttonPrimary{
+  background-color: var(--orange-base);
+  border-radius: 5px;
+}
+
+.buttonSecondary{
+  background-color: var(--dark-Blue);
+  border-radius: 5px;
+}

@@ -1,6 +1,7 @@
 'use client';
 import './global.css'
-
+import NavbarLayout from './navBar';
+import { BrowserRouter, Link, Route, Routes } from 'react-router-dom';
 import Homepage from './homepage.js'
 
 export const metadata = {
@@ -15,8 +16,14 @@ export default function RootLayout() {
   return (
     <html lang="en">
       <body>
-
-        <div>
+      <BrowserRouter>
+        <NavbarLayout />
+        <Routes>
+          <Route path="/" exact component={RootLayout} />
+          <Route path="/sobre" component={RootLayout} />
+        </Routes>
+      </BrowserRouter>
+        <div> 
           <Homepage />
         </div>
       </body>
