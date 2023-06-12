@@ -1,4 +1,4 @@
-# To-do-ace
+# To-do-fullstack
 FullStack project using PostGres, React, Node and TailwindCSS
 
 ## Initializing Server
@@ -42,6 +42,7 @@ You can clone this repository and navigate to the paste to-do-ace, and run the c
 - Ao editar o modal não fecha.
 - Não consegui fazer o deploy
 - Considerei o código muito cheio, creio que futuramente vou refaze-lo para otimizar.
+- Não apliquei meus conhecimentos em testes unitários.
 
 ## Figma design
 
