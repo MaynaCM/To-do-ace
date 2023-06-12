@@ -43,7 +43,7 @@ You can clone this repository and navigate to the paste to-do-ace, and run the c
 - Não consegui fazer o deploy
 - Considerei o código muito cheio, creio que futuramente vou refaze-lo para otimizar.
 
-##Figma design
+## Figma design
 
 https://www.figma.com/file/k8jVLd0YMnizGCsKLqjBUo/Untitled?type=design&node-id=0%3A1&t=bbuLX9BbJuRso0eU-1
 
