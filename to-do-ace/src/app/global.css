@@ -135,10 +135,23 @@ body {
   background-size: cover;
   background-image: url("/assets/bg2.jpg");
 }
+@media (min-width: 328px) and (max-width: 1023px) {
+  .bgImg {
+    background-image: none;
+    background-color: var(--orange-base);
+  }
+}
+
 
 .bgSquare{
   background-size: cover;
   background-image: url("/assets/loginImg.jpg");
+}
+@media (min-width: 320px) and (max-width: 1023px) {
+  .bgSquare {
+    background-image: none;
+    background-color:white;
+  }
 }
 
 .SquareDiv{
