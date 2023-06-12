@@ -1,16 +1,16 @@
 import { faX } from "@fortawesome/free-solid-svg-icons"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useState } from "react";
-import dotenv from 'dotenv';
+import {useCookies} from 'react-cookie'
 
-dotenv.config();
-console.log(process.env.REACT_APP_URL);
+
 
 function Modal({mode, setShowModal, getData,  task}){
+    const [cookies, setCookie, removeCookie] = useCookies(null)
     const EditeMode = mode === 'Edite' ? true :false
 
     const [data, setData] = useState({
-        user_email: EditeMode ? task.user_email : 'may@test.com',
+        user_email: EditeMode ? task.user_email : cookies.Email,
         title: EditeMode ? task.title : null,
         tasktext: EditeMode ? task.tasktext : null,
         progress: EditeMode ? task.progress : null,
@@ -19,7 +19,7 @@ function Modal({mode, setShowModal, getData,  task}){
         const postData = async (e) => {
         e.preventDefault() 
         try{
-            const response = await fetch(`${process.env.REACT_APP_URL}/todos`, {
+            const response = await fetch(`${process.env.REACT_APP_SERVERURL}/todos`, {
             method: "POST",
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify(data)

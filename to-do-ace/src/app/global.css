@@ -48,6 +48,9 @@ body {
   font-family: 'Cantarell', sans-serif;
 }
 
+.font{
+  font-family: 'Cantarell', sans-serif;
+}
 /* Homepage classes */
 
 .divBorderBottom{
@@ -123,4 +126,26 @@ body {
 
 .modalInput:focus-visible{
   border: var(--orange-base) solid 2px;
+}
+
+
+/*Login screen classes */
+
+.bgImg{
+  background-size: cover;
+  background-image: url("/assets/bg2.jpg");
+}
+
+.bgSquare{
+  background-size: cover;
+  background-image: url("/assets/loginImg.jpg");
+}
+
+.SquareDiv{
+  border-radius: 15px 0px 0px 15px;
+}
+
+.loginInput{
+  border: #E6E6E6 solid 1px;
+  border-radius: 5px;
 }

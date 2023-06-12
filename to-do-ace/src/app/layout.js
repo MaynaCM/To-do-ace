@@ -1,11 +1,10 @@
 'use client';
 import './global.css'
-import NavbarLayout from './navBar';
-import { BrowserRouter, Link, Route, Routes } from 'react-router-dom';
 import { useState, useEffect } from "react";
 import TaskCard from './ticket';
 import Homepage from './homepage.js'
-import 'dotenv/config';
+import Auth from './login';
+import { useCookies} from 'react-cookie'
 
 
 
@@ -15,9 +14,11 @@ export const metadata = {
 }
 
 export default function RootLayout() {
-
-  const userEmail = 'may@test.com'
+  const [cookies, setCookie, removeCookie] = useCookies(null)
+  const authToken = cookies
+  const userEmail = cookies.Email
   const [task, setTask] = useState(null)
+
 
   const getData = async () => {
     try{
@@ -30,7 +31,11 @@ export default function RootLayout() {
     }
   }
 
-  useEffect(() => getData(), [])
+  useEffect(() => {
+    if(authToken){
+      getData()
+    }}
+    ,[])
 
   console.log(task)
 
@@ -42,14 +47,17 @@ export default function RootLayout() {
   return (
     <html lang="en">
       <body>
+      {!authToken && <Auth />} 
+      {authToken && 
       <main className="bg-cyan h-screen w-screen flex content-end items-end overflow-x-hidden">
-      <BrowserRouter>
-        <NavbarLayout />
-        <Routes>
-          <Route path="/" exact component={RootLayout} />
-          <Route path="/sobre" component={RootLayout} />
-        </Routes>
-      </BrowserRouter>
+      <header className="navBar">
+        <img src='/assets/logo.png' className='pl-6 mt-2'/>
+        <ul className="flex flex-row gap-4  justify-end px-6 text-white w-full">
+          <li className="text-lg">
+            User
+          </li>
+        </ul>
+      </ header>
       <div className="bg-white h-[70%] w-screen rounded-tl-[90px] ">
           <Homepage  getData={getData}/>
           <div className='overflow-y-auto bg-white w-full p-4'>
@@ -57,6 +65,7 @@ export default function RootLayout() {
         </div>
         </div>
       </main>
+  }
       </body>
     </html>
   )

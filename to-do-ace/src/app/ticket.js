@@ -3,9 +3,9 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useState } from 'react';
 import ProgressBar from './progressBar';
 import Modal from './addTaskModal';
-import dotenv from 'dotenv';
 
-dotenv.config();
+
+
 
 function TaskCard({ task, getData }) {
   const [showModal, setShowModal] = useState(false)

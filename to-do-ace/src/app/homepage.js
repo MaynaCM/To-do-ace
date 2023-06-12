@@ -12,9 +12,9 @@ function Homepage(getData) {
   const [showModal, setShowModal] = useState(false)
 
   return (
-      <div class="w-auto">
+      <div className="w-auto">
         <div className="flex flex-col lg:ml-[5%] ml-[2%] mt-4 divBorderBottom p-4 mr-[1%]">
-          <p className="text-dark-Blue text-2xl">Bem vindo User!</p>
+          <p className="text-dark-Blue text-2xl">Bem vindo!</p>
           <p className="text-pink-base text-xl mt-2">O que temos para hoje?</p>
         </div>
         <div className='p-4'>
