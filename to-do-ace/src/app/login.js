@@ -63,7 +63,7 @@ export default function Auth() {
        <div className="w-6/12 p-5 md:w-full sm:w-full">
           <form className="h-5/6">
              <p className="text-dark-Blue font-bold sm:text-2xl text-3xl xl:mt-[2%] 2xl:mt-[2%]">{isLogin ? 'Login' : 'Cadastro'}</p>
-             <p className="text-orange-base sm:text-sm mt-2">Projeto de To-do list e gerenciamento de usuários</p>
+             <p className="text-orange-base sm:text-sm mt-2">Projeto de To-do list</p>
              <div className="mt-4 flex flex-col h-full">
                 <div className="flex flex-col mt-12">
                    <label className="text-dark-Blue text-sm xl:text-base 2xl:texttest@test.com-base">E-mail</label>

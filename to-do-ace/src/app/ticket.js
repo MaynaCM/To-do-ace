@@ -62,16 +62,16 @@ function TaskCard({ task, getData }) {
         {/*end */}
       </div>
       {showTaskText && (
-        <div className="mt-4 cardExpanded p-2 gap-y-2 flex flex-col md:hidden sm:hidden divBorderBottom">
+        <div className="mt-4 cardExpanded p-2 gap-y-2 flex flex-col md:hidden sm:hidden">
             <p className='text-dark-Blue font-bold'>Descrição</p>
           <text>{task.tasktext}</text>
         </div>
       )}
-      <div className="mt-4 cardExpanded p-2 gap-y-2 flex flex-col lg:hidden xl:hidden 2xl:hidden divBorderBottom">
+      <div className="mt-4 cardExpanded p-2 gap-y-2 flex flex-col lg:hidden xl:hidden 2xl:hidden">
             <p className='text-dark-Blue font-bold'>Descrição</p>
           <text>{task.tasktext}</text>
       </div>
-      <div className='xl:hidden lg:hidden 2xl:hidden w-full h-14 flex flex-col p-1 gap-y-1 '>
+      <div className='xl:hidden lg:hidden 2xl:hidden w-full h-14 flex flex-col p-1 gap-y-1 divBorderTop '>
         <p className='text-dark-Blue font-bold'>Seu progresso</p>
         <ProgressBar progress={task.progress} />
       </div>

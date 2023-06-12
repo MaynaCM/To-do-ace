@@ -62,24 +62,24 @@ function Modal({mode, setShowModal, getData,  task}){
         console.log(data) 
     }
 
-    const btnClass = `${mode} buttonSecondary text-white p-3 w-6/12 mt-auto  cursor-pointer`;
+    const btnClass = `${mode} buttonSecondary text-white p-3 w-6/12 mt-auto 2xl:w-5/12 cursor-pointer`;
 
     return(
         <div className="modalOverlay">
-            <div className="modalBox h-4/6 w-6/12 md:w-9/12 sm:w-10/12 bg-white flex flex-col p-6">
+            <div className="modalBox h-4/6 w-6/12 md:w-9/12 sm:w-10/12 bg-white flex flex-col p-6 2xl:p-10 2xl:w-5/12">
                 <div className="flex justify-between">
                     <p className="text-xl text-dark-Blue font-bold">{mode} sua tarefa!</p>
                     <button onClick={() => setShowModal(false)}>
                         <FontAwesomeIcon icon={faX} className="text-orange-base"  size="1x"/>
                     </button>
                 </div>
-                <div className="mt-[8%] h-full">
+                <div className="mt-[8%] 2xl:mt-[1%] h-full">
                     <form className="flex flex-col h-full">
                         <label for="title" className="text-dark-Blue text-sm">Titulo</label>
                         <input
                         required
                         id='title'
-                        className="modalInput p-3 mb-[10%]" 
+                        className="modalInput p-3 mb-[10%] 2xl:mb-[5%]" 
                         maxLength={30}
                         placeholder="Titulo de sua tarefa"
                         name="title"
@@ -89,7 +89,7 @@ function Modal({mode, setShowModal, getData,  task}){
 
                         <label for="tasktext" className="text-dark-Blue text-sm">Descrição</label>
                         <input 
-                        className="modalInput p-3 mb-[10%]" 
+                        className="modalInput p-3 mb-[10%] 2xl:mb-[5%]" 
                         name="tasktext"
                         id="tasktext"
                         maxLength={150}
