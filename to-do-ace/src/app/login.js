@@ -23,8 +23,6 @@ export default function Auth() {
             setError('As senhas não estão iguais')
             return
         }
-
-
         const response = await fetch(`${process.env.REACT_APP_SERVERURL}/${endpoint}`, {
             method:'POST',
             headers:{'Content-Type': 'application/json'},
@@ -83,7 +81,7 @@ export default function Auth() {
               </div>
               }
               <div className="flex mt-[25%] justify-center">
-                <input type="submit" onClick={(e) => handleSubmit(e, isLogin ? 'login' : 'signup')} className="buttonPrimary p-4 w-6/12 text-white" value={isLogin ? 'Login' : 'Cadastro'}/>
+                <input type="submit" onClick={(e) => handleSubmit(e, isLogin ? 'login' : 'signup')} className="buttonPrimary p-4 w-6/12 text-white cursor-pointer"/>
               </div>      
               </div>
             </form>

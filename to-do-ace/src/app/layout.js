@@ -1,6 +1,8 @@
 'use client';
 import './global.css'
 import { useState, useEffect } from "react";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCircleUser } from '@fortawesome/free-solid-svg-icons';
 import TaskCard from './ticket';
 import Homepage from './homepage.js'
 import Auth from './login';
@@ -15,9 +17,22 @@ export const metadata = {
 
 export default function RootLayout() {
   const [cookies, setCookie, removeCookie] = useCookies(null)
-  const authToken = cookies
+  const authToken = cookies.AuthToken
   const userEmail = cookies.Email
   const [task, setTask] = useState(null)
+  const [showBalloon, setShowBalloon] = useState(false);
+
+  //show Logout
+  const handleBalloonClick = () => {
+    setShowBalloon(!showBalloon);
+  };
+
+  //logout
+  const singOut = () => {
+    removeCookie('Email')
+    removeCookie('AuthToken')
+    window.location.reload()
+  }
 
 
   const getData = async () => {
@@ -50,18 +65,25 @@ export default function RootLayout() {
       {!authToken && <Auth />} 
       {authToken && 
       <main className="bg-cyan h-screen w-screen flex content-end items-end overflow-x-hidden">
-      <header className="navBar">
+      <header className="navBar relative">
         <img src='/assets/logo.png' className='pl-6 mt-2'/>
         <ul className="flex flex-row gap-4  justify-end px-6 text-white w-full">
-          <li className="text-lg">
-            User
+          <li className="text-lg pl-6">
+            <a className='cursor-pointer' onClick={handleBalloonClick}>
+              <FontAwesomeIcon icon={faCircleUser} size='2xl'/>
+            </a>
+            {showBalloon && (
+              <div className="logout w-1/12 absolute flex justify-center mt-[1%] bg-white text-pink-base p-2 rounded-md right-[0%]">
+              <a className='cursor-pointer' onClick={singOut}>Sair</a>
+              </div>
+              )}
           </li>
         </ul>
       </ header>
       <div className="bg-white h-[70%] w-screen rounded-tl-[90px] ">
           <Homepage  getData={getData}/>
           <div className='overflow-y-auto bg-white w-full p-4'>
-          {sortedTasks?.map((task) => <TaskCard key={task.id} task={task} getData={getData}/>)}
+          {sortedTasks?.map((task) => <TaskCard key={task.id} task={task} getData={getData} progress={task.progress}/>)}
         </div>
         </div>
       </main>

@@ -86,9 +86,18 @@ app.delete('/todos/:id', async(req, res) =>{
   //login
 
     app.post('/login', async (req, res) =>{
+      const {email, password} = req.body
         try {
-            const {email, password} = req.body
-        } catch (err){
+          const users = await pool.query('SELECT * FROM users WHERE email = $1', [email])
+          if (!users.rows.length) return res.json ({detail: 'O usuário não existe'})
+
+          const sucess = await bcrypt.compare(password, users.rows[0].hashed_password)
+
+          const token = jwt.sign({email}, 'secret', {expiresIn:'1hr'})
+          if (sucess){
+            res.json({'email': users.rows[0].email, token})
+          }
+         } catch (err){
             console.error(err)
         }
     })

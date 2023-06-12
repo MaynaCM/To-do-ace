@@ -37,8 +37,10 @@ function TaskCard({ task, getData }) {
           <button onClick={toggleTaskText}>
             <FontAwesomeIcon icon={chevronIcon} className="text-cyan mr-3" size="xl" />
           </button>
-          <p className="text-dark-Blue text-lg">{task.title}</p>
-          <ProgressBar />
+          <div className='flex w-full justify-between items-center'>
+            <p className="text-dark-Blue text-lg">{task.title}</p>
+            <ProgressBar progress={task.progress}/>
+          </div>
         </div>
         <div className="self-center justify-end w-6/12 flex gap-4">
           <button className="buttonPrimary p-3 text-white w-1/12" onClick={() => setShowModal(true)}>Editar</button>
