@@ -23,11 +23,12 @@ function Modal({mode, setShowModal, getData,  task}){
             method: "POST",
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify(data)
-            })
+            });
             if (response.status === 200){
                 console.log('WORKED')
                 setShowModal(false)
                 getData()
+                window.location.reload()
             }
         } catch(err){
             console.error(err)
@@ -41,10 +42,12 @@ function Modal({mode, setShowModal, getData,  task}){
                 method: "PUT",
                 headers:{'Content-Type': 'application/json'},
                 body: JSON.stringify(data)
-            })
+            });
             if(response.status === 200){
                 setShowModal(false)
                 getData()
+                window.location.reload()
+                
             }
         }catch (err) {
         console.error(err)

@@ -62,32 +62,34 @@ export default function RootLayout() {
   return (
     <html lang="en">
       <body>
+        <main>
       {!authToken && <Auth />} 
       {authToken && 
-      <main className="bg-cyan h-screen w-screen flex content-end items-end overflow-x-hidden">
+      <div className="bg-cyan h-screen w-screen flex content-end items-end overflow-x-hidden">
       <header className="navBar relative">
-        <img src='/assets/logo.png' className='pl-6 mt-2'/>
+        <img src='/assets/logo.png' className='pl-6 mt-2 sm:w-[25%] sm:h-[25%]'/>
         <ul className="flex flex-row gap-4  justify-end px-6 text-white w-full">
           <li className="text-lg pl-6">
             <a className='cursor-pointer' onClick={handleBalloonClick}>
-              <FontAwesomeIcon icon={faCircleUser} size='2xl'/>
+              <FontAwesomeIcon icon={faCircleUser} size='xl'/>
             </a>
             {showBalloon && (
-              <div className="logout w-1/12 absolute flex justify-center mt-[1%] bg-white text-pink-base p-2 rounded-md right-[0%]">
+              <div className="logout w-1/12 sm:w-2/12 md:w-2/12 absolute flex justify-center mt-[1%] bg-white text-pink-base p-2 rounded-md right-[0%]">
               <a className='cursor-pointer' onClick={singOut}>Sair</a>
               </div>
               )}
           </li>
         </ul>
       </ header>
-      <div className="bg-white h-[70%] w-screen rounded-tl-[90px] ">
+      <div className="bg-white h-[70%] w-screen rounded-tl-[90px] sm:rounded-t-[25px] md:rounded-t-[25px]">
           <Homepage  getData={getData}/>
           <div className='overflow-y-auto bg-white w-full p-4'>
           {sortedTasks?.map((task) => <TaskCard key={task.id} task={task} getData={getData} progress={task.progress}/>)}
         </div>
         </div>
-      </main>
+      </div>
   }
+      </main>
       </body>
     </html>
   )

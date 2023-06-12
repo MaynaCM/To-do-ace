@@ -56,6 +56,12 @@ body {
 .divBorderBottom{
   border-bottom: 1px solid var(--dark-Blue);
 }
+.divBorderXl{
+  border-top-left-radius: 90px;
+}
+.divBorder{
+  border-radius: 25px 25px 0px 0px;
+}
 
 /* navBar classes */
 
@@ -173,4 +179,13 @@ body {
 
 .innerBar{
   border-radius: 10px 0px 0px 10px;
+}
+
+/* mobile and tablet classes */
+@media (min-width: 320px) and (max-width: 1023px) {
+.btnMobile{
+ background-color: var(--pink-base);
+ color: white;
+ border-radius: 5px;
+}
 }
