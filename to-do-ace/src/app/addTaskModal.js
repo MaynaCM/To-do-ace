@@ -25,7 +25,6 @@ function Modal({mode, setShowModal, getData,  task}){
             body: JSON.stringify(data)
             });
             if (response.status === 200){
-                console.log('WORKED')
                 setShowModal(false)
                 getData()
                 window.location.reload()
@@ -38,7 +37,7 @@ function Modal({mode, setShowModal, getData,  task}){
     const editData = async(e) => {
         e.preventDefault()
         try {
-            await fetch(`${process.env.REACT_APP_SERVERURL}/todos/${task.id}`, {
+            const response = await fetch(`${process.env.REACT_APP_SERVERURL}/todos/${task.id}`, {
                 method: "PUT",
                 headers:{'Content-Type': 'application/json'},
                 body: JSON.stringify(data)
@@ -67,7 +66,7 @@ function Modal({mode, setShowModal, getData,  task}){
 
     return(
         <div className="modalOverlay">
-            <div className="modalBox h-4/6 w-6/12 bg-white flex flex-col p-6">
+            <div className="modalBox h-4/6 w-6/12 md:w-9/12 sm:w-10/12 bg-white flex flex-col p-6">
                 <div className="flex justify-between">
                     <p className="text-xl text-dark-Blue font-bold">{mode} sua tarefa!</p>
                     <button onClick={() => setShowModal(false)}>

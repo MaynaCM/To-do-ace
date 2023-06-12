@@ -75,7 +75,7 @@ function TaskCard({ task, getData }) {
         <p className='text-dark-Blue font-bold'>Seu progresso</p>
         <ProgressBar progress={task.progress} />
       </div>
-      {showModal && <Modal mode={'Edite'} setShowModal={setShowModal} getData={getData} task={task}/>}
+      {showModal && <Modal mode={'Edite'} setShowModal={setShowModal} getData={() => getData()} task={task}/>}
     </div>
   );
 }

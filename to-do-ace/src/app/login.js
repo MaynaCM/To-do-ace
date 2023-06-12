@@ -99,13 +99,13 @@ export default function Auth() {
              {!isLogin && 
              <p className="text-orange-base flex flex-col">
                 Possui uma conta?
-                <a className="text-dark-Blue " onClick={() => viewLogin(true)}>Login</a>
+                <a className="text-dark-Blue cursor-pointer" onClick={() => viewLogin(true)}>Login</a>
              </p>
              }
              {isLogin && 
              <p className="text-orange-base flex flex-col">
                 Não tem uma conta?
-                <a  className="text-dark-Blue "  onClick={() => viewLogin(false)}>Cadastro</a>
+                <a  className="text-dark-Blue cursor-pointer"  onClick={() => viewLogin(false)}>Cadastro</a>
              </p>
              }
           </div>

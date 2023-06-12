@@ -23,7 +23,7 @@ function Homepage(getData) {
             Adicionar tarefa
           </button>
         </div>
-        {showModal && <Modal mode={'Crie'} setShowModal={setShowModal} getData={getData}/>}
+        {showModal && <Modal mode={'Crie'} setShowModal={setShowModal} getData={() => getData()}/>}
       </div>
 
   );
